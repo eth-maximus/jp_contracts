@@ -19,7 +19,7 @@ import { PreciseUnitMath } from "../lib/PreciseUnitMath.sol";
 import { AddressArrayUtils } from "../lib/AddressArrayUtils.sol";
 
 
-contract JeepToken is ERC20 {
+contract JPToken is ERC20 {
     using SafeMath for uint256;
     using SafeCast for int256;
     using SafeCast for uint256;

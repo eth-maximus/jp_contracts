@@ -17,11 +17,11 @@
 */
 pragma solidity 0.6.10;
 
-import { ICKToken } from "./ICKToken.sol";
+import { IJPToken } from "./IJPToken.sol";
 
 interface INAVIssuanceModule {
     function issue(
-        ICKToken _ckToken,
+        IJPToken _jpToken,
         address _reserveAsset,
         uint256 _reserveAssetQuantity,
         uint256 _minCKTokenReceiveQuantity,
@@ -30,9 +30,9 @@ interface INAVIssuanceModule {
         external;
     
     function redeem(
-        ICKToken _ckToken,
+        IJPToken _jpToken,
         address _reserveAsset,
-        uint256 _ckTokenQuantity,
+        uint256 _jpTokenQuantity,
         uint256 _minReserveReceiveQuantity,
         address _to
     ) 

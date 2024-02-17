@@ -17,11 +17,11 @@
 */
 pragma solidity 0.6.10;
 
-import { ICKToken } from "./ICKToken.sol";
+import { IJPToken } from "./IJPToken.sol";
 
 interface INAVIssuanceHook {
     function invokePreIssueHook(
-        ICKToken _ckToken,
+        IJPToken _jpToken,
         address _reserveAsset,
         uint256 _reserveAssetQuantity,
         address _sender,
@@ -30,7 +30,7 @@ interface INAVIssuanceHook {
         external;
 
     function invokePreRedeemHook(
-        ICKToken _ckToken,
+        IJPToken _jpToken,
         uint256 _redeemQuantity,
         address _sender,
         address _to

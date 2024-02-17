@@ -17,7 +17,7 @@
 */
 pragma solidity 0.6.10;
 
-import { ICKToken } from "./ICKToken.sol";
+import { IJPToken } from "./IJPToken.sol";
 
 /**
  * @title IDebtIssuanceModule
@@ -31,11 +31,11 @@ interface IDebtIssuanceModule {
      * Called by another module to register itself on debt issuance module. Any logic can be included
      * in case checks need to be made or state needs to be updated.
      */
-    function registerToIssuanceModule(ICKToken _ckToken) external;
+    function registerToIssuanceModule(IJPToken _jpToken) external;
 
     /**
      * Called by another module to unregister itself on debt issuance module. Any logic can be included
      * in case checks need to be made or state needs to be cleared.
      */
-    function unregisterFromIssuanceModule(ICKToken _ckToken) external;
+    function unregisterFromIssuanceModule(IJPToken _jpToken) external;
 }

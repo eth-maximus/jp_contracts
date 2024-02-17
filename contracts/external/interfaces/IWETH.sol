@@ -1,5 +1,5 @@
 /*
-    Copyright 2021 Cook Finance.
+    Copyright 2018 Cook Finance.
 
     Licensed under the Apache License, Version 2.0 (the "License");
     you may not use this file except in compliance with the License.
@@ -15,15 +15,25 @@
 
     SPDX-License-Identifier: Apache License, Version 2.0
 */
+
 pragma solidity 0.6.10;
 
-import { ICKToken } from "./ICKToken.sol";
+import { IERC20 } from "@openzeppelin/contracts/token/ERC20/IERC20.sol";
 
-interface IBasicIssuanceModule {
-    function getRequiredComponentUnitsForIssue(
-        ICKToken _ckToken,
-        uint256 _quantity
-    ) external returns(address[] memory, uint256[] memory);
+/**
+ * @title IWETH
+ * @author Cook Finance
+ *
+ * Interface for Wrapped Ether. This interface allows for interaction for wrapped ether's deposit and withdrawal
+ * functionality.
+ */
+interface IWETH is IERC20{
+    function deposit()
+        external
+        payable;
 
-    function issue(ICKToken _ckToken, uint256 _quantity, address _to) external;
+    function withdraw(
+        uint256 wad
+    )
+        external;
 }

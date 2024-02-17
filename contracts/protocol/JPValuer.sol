@@ -17,7 +17,7 @@ import { Position } from "./lib/Position.sol";
 import { ResourceIdentifier } from "./lib/ResourceIdentifier.sol";
 
 
-contract JeepValuer {
+contract JPValuer {
     using PreciseUnitMath for int256;
     using PreciseUnitMath for uint256;
     using Position for IJPToken;

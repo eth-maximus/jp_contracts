@@ -19,7 +19,7 @@ pragma solidity 0.6.10;
 
 import { IERC20 } from "@openzeppelin/contracts/token/ERC20/IERC20.sol";
 
-import { ICKToken } from "./ICKToken.sol";
+import { IJPToken } from "./IJPToken.sol";
 
 
 /**
@@ -29,19 +29,19 @@ import { ICKToken } from "./ICKToken.sol";
  */
 interface IModuleIssuanceHook {
 
-    function moduleIssueHook(ICKToken _ckToken, uint256 _ckTokenQuantity) external;
-    function moduleRedeemHook(ICKToken _ckToken, uint256 _ckTokenQuantity) external;
+    function moduleIssueHook(IJPToken _jpToken, uint256 _jpTokenQuantity) external;
+    function moduleRedeemHook(IJPToken _jpToken, uint256 _jpTokenQuantity) external;
     
     function componentIssueHook(
-        ICKToken _ckToken,
-        uint256 _ckTokenQuantity,
+        IJPToken _jpToken,
+        uint256 _jpTokenQuantity,
         IERC20 _component,
         bool _isEquity
     ) external;
 
     function componentRedeemHook(
-        ICKToken _ckToken,
-        uint256 _ckTokenQuantity,
+        IJPToken _jpToken,
+        uint256 _jpTokenQuantity,
         IERC20 _component,
         bool _isEquity
     ) external;

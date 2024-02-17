@@ -17,9 +17,9 @@
 */
 pragma solidity 0.6.10;
 
-import { ICKToken } from "./ICKToken.sol";
+import { IJPToken } from "./IJPToken.sol";
 
 interface IManagerIssuanceHook {
-    function invokePreIssueHook(ICKToken _ckToken, uint256 _issueQuantity, address _sender, address _to) external;
-    function invokePreRedeemHook(ICKToken _ckToken, uint256 _redeemQuantity, address _sender, address _to) external;
+    function invokePreIssueHook(IJPToken _jpToken, uint256 _issueQuantity, address _sender, address _to) external;
+    function invokePreRedeemHook(IJPToken _jpToken, uint256 _redeemQuantity, address _sender, address _to) external;
 }

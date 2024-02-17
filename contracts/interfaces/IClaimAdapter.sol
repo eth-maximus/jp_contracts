@@ -18,7 +18,7 @@
 
 import { IERC20 } from "@openzeppelin/contracts/token/ERC20/IERC20.sol";
 
-import { ICKToken } from "../interfaces/ICKToken.sol";
+import { IJPToken } from "../interfaces/IJPToken.sol";
 
 pragma solidity 0.6.10;
 
@@ -32,7 +32,7 @@ interface IClaimAdapter {
     /**
      * Generates the calldata for claiming tokens from the rewars pool
      *
-     * @param _ckToken      the CK token that is owed the tokens
+     * @param _jpToken      the CK token that is owed the tokens
      * @param _rewardPool   the rewards pool to claim from  
      *
      * @return _subject     the rewards pool to call
@@ -40,19 +40,19 @@ interface IClaimAdapter {
      * @return _calldata    the calldata to use
      */
     function getClaimCallData(
-        ICKToken _ckToken,
+        IJPToken _jpToken,
         address _rewardPool
     ) external view returns(address _subject, uint256 _value, bytes memory _calldata);
 
     /**
      * Gets the amount of unclaimed rewards
      *
-     * @param _ckToken      the CK token that is owed the tokens
+     * @param _jpToken      the CK token that is owed the tokens
      * @param _rewardPool   the rewards pool to check
      *
      * @return uint256      the amount of unclaimed rewards
      */
-    function getRewardsAmount(ICKToken _ckToken, address _rewardPool) external view returns(uint256);
+    function getRewardsAmount(IJPToken _jpToken, address _rewardPool) external view returns(uint256);
 
     /**
      * Gets the rewards token

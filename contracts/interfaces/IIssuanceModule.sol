@@ -17,13 +17,13 @@
 */
 pragma solidity 0.6.10;
 
-import { ICKToken } from "./ICKToken.sol";
+import { IJPToken } from "./IJPToken.sol";
 
 interface IIssuanceModule {
 
-    function issue(ICKToken _ckToken, uint256 _quantity, address _to) external;
-    function redeem(ICKToken _ckToken, uint256 _quantity, address _to) external;    
-    function issueWithSingleToken(ICKToken _ckToken, address _issueToken, uint256 _issueTokenQuantity, uint256 _slippageReserve,address _to, bool _returnDust) external;
-    function issueWithSingleToken2 (ICKToken _ckToken, address _issueToken, uint256 _issueTokenQuantity, uint256 _minCkTokenRec, uint256[] memory _weightings, address _to, bool _returnDust) external;
-    function redeemToSingleToken(ICKToken _ckToken, uint256 _ckTokenQuantity, address _redeemToken, address _to) external;
+    function issue(IJPToken _jpToken, uint256 _quantity, address _to) external;
+    function redeem(IJPToken _jpToken, uint256 _quantity, address _to) external;    
+    function issueWithSingleToken(IJPToken _jpToken, address _issueToken, uint256 _issueTokenQuantity, uint256 _slippageReserve,address _to, bool _returnDust) external;
+    function issueWithSingleToken2 (IJPToken _jpToken, address _issueToken, uint256 _issueTokenQuantity, uint256 _minCkTokenRec, uint256[] memory _weightings, address _to, bool _returnDust) external;
+    function redeemToSingleToken(IJPToken _jpToken, uint256 _jpTokenQuantity, address _redeemToken, address _to) external;
 }

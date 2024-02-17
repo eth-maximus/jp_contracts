@@ -29,7 +29,7 @@ import { PreciseUnitMath } from "../../../lib/PreciseUnitMath.sol";
  *
  * Wrap adapter for Venus that returns data for wrap/unwraps of tokens .
  */
-contract VenusWrapAdapater {
+contract VenusWrapAdapter {
     using SafeMath for uint256;
     using PreciseUnitMath for uint256;
 

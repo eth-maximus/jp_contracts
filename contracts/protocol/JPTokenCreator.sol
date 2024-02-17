@@ -9,7 +9,7 @@ import { IController } from "../interfaces/IController.sol";
 import { JPToken } from "./JPToken.sol";
 import { AddressArrayUtils } from "../lib/AddressArrayUtils.sol";
 
-contract JeepTokenCreator {
+contract JPTokenCreator {
     using AddressArrayUtils for address[];
 
     /* ============ Events ============ */
