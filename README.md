@@ -1,13 +1,3 @@
-# Sample Hardhat Project
+# JP protocol
 
-This project demonstrates a basic Hardhat use case. It comes with a sample contract, a test for that contract, and a script that deploys that contract.
-
-Try running some of the following tasks:
-
-```shell
-npx hardhat help
-npx hardhat test
-REPORT_GAS=true npx hardhat test
-npx hardhat node
-npx hardhat run scripts/deploy.js
-```
+This project demonstrates a fund token issuance (Index Token).  The Token consists of two interest bearing tokens on the BNB network - Venus USDT (https://bscscan.com/token/0xfd5840cd36d94d7229439859c0112a4185bc0255) and the Alpaca Interest Bearing USDT (https://bscscan.com/token/0x158da805682bdc8ee32d52833ad41e74bb951e59).
