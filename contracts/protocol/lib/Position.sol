@@ -32,7 +32,7 @@ import { PreciseUnitMath } from "../../lib/PreciseUnitMath.sol";
  * @title Position
  * @author Cook Finance
  *
- * Collection of helper functions for handling and updating CKToken Positions
+ * Collection of helper functions for handling and updating JPToken Positions
  *
  * CHANGELOG:
  *  - Updated editExternalPosition to work when no external position is associated with module
@@ -47,28 +47,28 @@ library Position {
     /* ============ Helper ============ */
 
     /**
-     * Returns whether the CKToken has a default position for a given component (if the real unit is > 0)
+     * Returns whether the JPToken has a default position for a given component (if the real unit is > 0)
      */
     function hasDefaultPosition(IJPToken _jpToken, address _component) internal view returns(bool) {
         return _jpToken.getDefaultPositionRealUnit(_component) > 0;
     }
 
     /**
-     * Returns whether the CKToken has an external position for a given component (if # of position modules is > 0)
+     * Returns whether the JPToken has an external position for a given component (if # of position modules is > 0)
      */
     function hasExternalPosition(IJPToken _jpToken, address _component) internal view returns(bool) {
         return _jpToken.getExternalPositionModules(_component).length > 0;
     }
     
     /**
-     * Returns whether the CKToken component default position real unit is greater than or equal to units passed in.
+     * Returns whether the JPToken component default position real unit is greater than or equal to units passed in.
      */
     function hasSufficientDefaultUnits(IJPToken _jpToken, address _component, uint256 _unit) internal view returns(bool) {
         return _jpToken.getDefaultPositionRealUnit(_component) >= _unit.toInt256();
     }
 
     /**
-     * Returns whether the CKToken component external position is greater than or equal to the real units passed in.
+     * Returns whether the JPToken component external position is greater than or equal to the real units passed in.
      */
     function hasSufficientExternalUnits(
         IJPToken _jpToken,
@@ -84,11 +84,11 @@ library Position {
     }
 
     /**
-     * If the position does not exist, create a new Position and add to the CKToken. If it already exists,
+     * If the position does not exist, create a new Position and add to the JPToken. If it already exists,
      * then set the position units. If the new units is 0, remove the position. Handles adding/removing of 
      * components where needed (in light of potential external positions).
      *
-     * @param _jpToken           Address of CKToken being modified
+     * @param _jpToken           Address of JPToken being modified
      * @param _component          Address of the component
      * @param _newUnit            Quantity of Position units - must be >= 0
      */
@@ -119,7 +119,7 @@ library Position {
      * 5) If the position is being closed and other existing positions still exist for the component then just remove the
      *    external position.
      *
-     * @param _jpToken         CKToken being updated
+     * @param _jpToken         JPToken being updated
      * @param _component        Component position being updated
      * @param _module           Module external position is associated with
      * @param _newUnit          Position units of new external position
@@ -160,7 +160,7 @@ library Position {
     /**
      * Get total notional amount of Default position
      *
-     * @param _jpTokenSupply     Supply of CKToken in precise units (10^18)
+     * @param _jpTokenSupply     Supply of JPToken in precise units (10^18)
      * @param _positionUnit       Quantity of Position units
      *
      * @return                    Total notional amount of units
@@ -172,7 +172,7 @@ library Position {
     /**
      * Get position unit from total notional amount
      *
-     * @param _jpTokenSupply     Supply of CKToken in precise units (10^18)
+     * @param _jpTokenSupply     Supply of JPToken in precise units (10^18)
      * @param _totalNotional      Total notional amount of component prior to
      * @return                    Default position unit
      */
@@ -183,7 +183,7 @@ library Position {
     /**
      * Get the total tracked balance - total supply * position unit
      *
-     * @param _jpToken           Address of the CKToken
+     * @param _jpToken           Address of the JPToken
      * @param _component          Address of the component
      * @return                    Notional tracked balance
      */
@@ -195,9 +195,9 @@ library Position {
     /**
      * Calculates the new default position unit and performs the edit with the new unit
      *
-     * @param _jpToken                 Address of the CKToken
+     * @param _jpToken                 Address of the JPToken
      * @param _component                Address of the component
-     * @param _ckTotalSupply           Current CKToken supply
+     * @param _jpTotalSupply           Current JPToken supply
      * @param _componentPreviousBalance Pre-action component balance
      * @return                          Current component balance
      * @return                          Previous position unit
@@ -206,7 +206,7 @@ library Position {
     function calculateAndEditDefaultPosition(
         IJPToken _jpToken,
         address _component,
-        uint256 _ckTotalSupply,
+        uint256 _jpTotalSupply,
         uint256 _componentPreviousBalance
     )
         internal
@@ -218,7 +218,7 @@ library Position {
         uint256 newTokenUnit;
         if (currentBalance > 0) {
             newTokenUnit = calculateDefaultEditPositionUnit(
-                _ckTotalSupply,
+                _jpTotalSupply,
                 _componentPreviousBalance,
                 currentBalance,
                 positionUnit
@@ -233,13 +233,13 @@ library Position {
     }
 
     /**
-     * Calculate the new position unit given total notional values pre and post executing an action that changes CKToken state
+     * Calculate the new position unit given total notional values pre and post executing an action that changes JPToken state
      * The intention is to make updates to the units without accidentally picking up airdropped assets as well.
      *
-     * @param _jpTokenSupply     Supply of CKToken in precise units (10^18)
+     * @param _jpTokenSupply     Supply of JPToken in precise units (10^18)
      * @param _preTotalNotional   Total notional amount of component prior to executing action
      * @param _postTotalNotional  Total notional amount of component after the executing action
-     * @param _prePositionUnit    Position unit of CKToken prior to executing action
+     * @param _prePositionUnit    Position unit of JPToken prior to executing action
      * @return                    New position unit
      */
     function calculateDefaultEditPositionUnit(

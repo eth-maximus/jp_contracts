@@ -21,7 +21,7 @@ describe("JP-Issue-Alpaca-Venus", async () => {
     let CREATOR = await ethers.getContractFactory("JPTokenCreator");
     let CONTROLLER = await ethers.getContractFactory("Controller");
     let INTEGRATION = await ethers.getContractFactory("IntegrationRegistry");
-    let TOKEN = await ethers.getContractFactory("JPToken");
+    TOKEN = await ethers.getContractFactory("JPToken");
     let VALUER = await ethers.getContractFactory("JPValuer");
     let ORACLE = await ethers.getContractFactory("PriceOracle");
     let ISSUANCEMODULEV2 = await ethers.getContractFactory("IssuanceModuleV2");
@@ -52,7 +52,7 @@ describe("JP-Issue-Alpaca-Venus", async () => {
     let venusAdapter = await VENUS.deploy();
     let controller = await CONTROLLER.deploy(deployer.address);
     let creator = await CREATOR.deploy(controller.target);
-    let issuanceModuleV2 = await ISSUANCEMODULEV2.deploy(controller.target, wBnb);
+    issuanceModuleV2 = await ISSUANCEMODULEV2.deploy(controller.target, wBnb);
     let integrationRegistry = await INTEGRATION.deploy(controller.target);
 
     let modules = [issuanceModuleV2.target];
@@ -68,9 +68,6 @@ describe("JP-Issue-Alpaca-Venus", async () => {
     await issuanceModuleV2.setWrapAdapters([alpacaUsdt], ["ALPACAADAPTER"], [bep20Usdt]);
     await issuanceModuleV2.setExchanges([wBnb, bUsd, bep20Usdt], ["PANCAKESWAP", "PANCAKESWAP", "PANCAKESWAP"]);
 
-    adapterComponents = [alpacaUsdt];
-
-
     let tokenComponents =[venusUsdt, alpacaUsdt];
     let tokenUnits = [2318000000,'476900000000000000'];
     let tokenModules = [issuanceModuleV2];
@@ -84,12 +81,15 @@ describe("JP-Issue-Alpaca-Venus", async () => {
     let busdContract = await new ethers.BaseContract(bUsd, apprvInterface);
     await busdContract.connect(bUsdWhale).approve(issuanceModuleV2.target, '100000000000000000000');
     console.log("allowance : ", await busdContract.connect(bUsdWhale).allowance(bUsdWhale, issuanceModuleV2.target));
-    let midTokens = ['0x0000000000000000000000000000000000000000','0x0000000000000000000000000000000000000000'];
-    let weightings = ['496263495904604189', '503736504095395811'];
-    await issuanceModuleV2.connect(bUsdWhale).issueWithSingleToken2(tokenAddr, bUsd, '100000000000000000000', '92204480000000000000', midTokens, weightings, bUsdWhale, false)
-    
-    console.log("balance of D-FUND : ", await TOKEN.attach(tokenAddr).balanceOf(bUsdWhale));
+
   })  
 
+  it("Fund Issuance (alpaca, venus)", async () => {
+    let midTokens = ['0x0000000000000000000000000000000000000000','0x0000000000000000000000000000000000000000'];
+    let weightings = ['496263495904604189', '503736504095395811'];
+    await issuanceModuleV2.connect(bUsdWhale).issueWithSingleToken2(tokenAddr, bUsd, '100000000000000000000', '91104480000000000000', midTokens, weightings, bUsdWhale, false)
+    
+    console.log("balance of D-FUND : ", await TOKEN.attach(tokenAddr).balanceOf(bUsdWhale));
+  });
 
 });

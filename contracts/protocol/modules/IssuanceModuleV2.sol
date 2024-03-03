@@ -42,8 +42,6 @@ import { IExchangeAdapter } from "../../interfaces/IExchangeAdapter.sol";
 import { ResourceIdentifier } from "../lib/ResourceIdentifier.sol";
 import { IYieldYakStrategyV2 } from "../../interfaces/external/IYieldYakStrategyV2.sol";
 
-import "hardhat/console.sol";
-
 /**
  * @title IssuanceModule
  * @author Cook Finance
@@ -672,25 +670,17 @@ contract IssuanceModuleV2 is Ownable, ModuleBase, ReentrancyGuard {
         view
         returns (TradeInfo memory)
     {
-        console.log("=================");
-        uint256 thresholdAmount;
         address[] memory path;
         if (_midToken == address(0) || _midToken == _sendToken || _midToken == _receiveToken) {
             path = new address[](2);
             path[0] = _sendToken;
-            path[1] = _receiveToken;
-            console.log(path[0]);
-            console.log(path[1]);            
+            path[1] = _receiveToken;         
         } else {
             path = new address[](3);
             path[0] = _sendToken;
             path[1] = _midToken;
             path[2] = _receiveToken;
-            console.log(path[0]);
-            console.log(path[1]);
-            console.log(path[2]);
         }
-
 
         TradeInfo memory tradeInfo;
         tradeInfo.jpToken = _jpToken;

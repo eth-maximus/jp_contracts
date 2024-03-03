@@ -32,7 +32,6 @@ import { ResourceIdentifier } from "./ResourceIdentifier.sol";
 import { SafeCast } from "@openzeppelin/contracts/utils/SafeCast.sol";
 import { SafeMath } from "@openzeppelin/contracts/math/SafeMath.sol";
 import { SignedSafeMath } from "@openzeppelin/contracts/math/SignedSafeMath.sol";
-import "hardhat/console.sol";
 
 /**
  * @title ModuleBase
@@ -119,7 +118,6 @@ abstract contract ModuleBase is IModule {
      * Gets the integration for the module with the passed in name. Validates that the address is not empty
      */
     function getAndValidateAdapter(string memory _integrationName) public view returns(address) { 
-        console.log("Integration name: ", _integrationName);
         bytes32 integrationHash = getNameHash(_integrationName);
         return getAndValidateAdapterWithHash(integrationHash);
     }
@@ -131,11 +129,6 @@ abstract contract ModuleBase is IModule {
         address adapter = controller.getIntegrationRegistry().getIntegrationAdapterWithHash(
             address(this),
             _integrationHash
-        );
-
-        console.log(
-        "Adapter addr: ",
-        adapter
         );
 
         require(adapter != address(0), "Must be valid adapter"); 
