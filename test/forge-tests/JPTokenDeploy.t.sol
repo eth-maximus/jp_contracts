@@ -97,13 +97,13 @@ contract JPTokenDeployTest is Test {
         issuanceModuleV2.initialize(token, IManagerIssuanceHook(address(0)));
         vm.prank(bUsdWhale);
         (bool success,) = bUsd.call(abi.encodeWithSelector(0x095ea7b3, address(issuanceModuleV2), 100000000000000000000));
+    }
+
+    function testIssue() public {
         addrArr.push(address(0));
         addrArr.push(address(0));
         uintArr.push(496263495904604189);
         uintArr.push(503736504095395811);
-    }
-
-    function testIssue() public {
         vm.prank(bUsdWhale);
         issuanceModuleV2.issueWithSingleToken2(token, bUsd, 100000000000000000000, 91104480000000000000,
             addrArr, uintArr, bUsdWhale, false);
