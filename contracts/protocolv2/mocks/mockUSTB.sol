@@ -1,12 +1,12 @@
 // SPDX-License-Identifier: BUSL-1.1
 pragma solidity ^0.8.20;
 
-import { ERC20Upgradeable } from "openzeppelin/contracts/token/ERC20/ERC20Upgradeable.sol";
-import { PausableUpgradeable } from "openzeppelin-contracts-upgradeable/security/PausableUpgradeable.sol";
-import { ECDSA } from "openzeppelin-contracts/utils/cryptography/ECDSA.sol";
+import { ERC20Upgradeable } from "openzeppelin-contracts-upgradeable/contracts/token/ERC20/ERC20Upgradeable.sol";
+import { PausableUpgradeable } from "openzeppelin-contracts-upgradeable/contracts/security/PausableUpgradeable.sol";
+import { ECDSA } from "openzeppelin/contracts/utils/cryptography/ECDSA.sol";
 
-import { IERC7246 } from "src/interfaces/IERC7246.sol";
-import { AllowList } from "src/AllowList.sol";
+import { IERC7246 } from "../interfaces/IERC7246.sol";
+import { AllowList } from "./AllowList.sol";
 
 /**
  * @title USTB
