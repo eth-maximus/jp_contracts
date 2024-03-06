@@ -1,7 +1,7 @@
 // SPDX-License-Identifier: BUSL-1.1
 pragma solidity ^0.8.20;
 
-import { ERC20Upgradeable } from "openzeppelin-contracts-upgradeable/token/ERC20/ERC20Upgradeable.sol";
+import { ERC20Upgradeable } from "openzeppelin/contracts/token/ERC20/ERC20Upgradeable.sol";
 import { PausableUpgradeable } from "openzeppelin-contracts-upgradeable/security/PausableUpgradeable.sol";
 import { ECDSA } from "openzeppelin-contracts/utils/cryptography/ECDSA.sol";
 

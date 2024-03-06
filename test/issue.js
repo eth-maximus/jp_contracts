@@ -81,7 +81,7 @@ describe("JP-Issue-Alpaca-Venus", async () => {
     let busdContract = await new ethers.BaseContract(bUsd, apprvInterface);
     await busdContract.connect(bUsdWhale).approve(issuanceModuleV2.target, '100000000000000000000');
     console.log("allowance : ", await busdContract.connect(bUsdWhale).allowance(bUsdWhale, issuanceModuleV2.target));
-
+    
   })  
 
   it("Fund Issuance (alpaca, venus)", async () => {
